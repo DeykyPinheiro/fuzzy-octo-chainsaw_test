@@ -13,6 +13,8 @@
   <body>
     <nav>
       <% if current_user %>
+      <%= link_to "home", movies_path %>
+      
         <% if current_user.admin? %>
           <%= link_to "Create User", new_user_path %>
         <% end %>

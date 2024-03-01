@@ -13,4 +13,14 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   root 'sessions#new'
+
+
+  #my routes
+  get 'movies/import_movies', to: 'movies#import_movies'
+  post 'movies/import_movies', to: 'movies#mass_movies'
+
+  get 'movies/import_rates', to: 'movies#import_rates'
+  post 'user_movies/mass_rates', to: 'user_movies#mass_rates'
+
+  resources :user_movies, only: [:index]
 end

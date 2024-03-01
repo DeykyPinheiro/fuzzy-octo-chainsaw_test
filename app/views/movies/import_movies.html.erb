@@ -1,0 +1,7 @@
+<%= form_tag({action: 'mass_movies'}, multipart: true) do %>
+  <div class="form-group">
+  <%= label_tag :file, "Selecione o arquivo CSV com as filmes:" %>
+  <%= file_field_tag :file, accept: '.csv' %>
+  </div>
+  <%= submit_tag 'Importar Filmes' %>
+<% end %>

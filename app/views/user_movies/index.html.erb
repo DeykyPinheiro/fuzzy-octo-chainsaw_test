@@ -1,0 +1,7 @@
+<%= form_tag({action: 'mass_rates'}, multipart: true) do %>
+  <div class="form-group">
+  <%= label_tag :file, "Selecione o arquivo CSV com as Notas:" %>
+  <%= file_field_tag :file, accept: '.csv' %>
+  </div>
+  <%= submit_tag 'Importar Notas' %>
+<% end %>
