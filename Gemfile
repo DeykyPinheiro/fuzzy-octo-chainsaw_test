@@ -45,8 +45,11 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "factory_bot_rails", "~> 6.1"
+  gem "faker", "~> 2.17"
+  gem "rspec-rails", "~> 5.0"
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :development do
@@ -66,6 +69,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "database_cleaner-active_record", "~> 2.0"
 end
 
 gem "sidekiq", "~> 7.2"
