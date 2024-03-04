@@ -28,11 +28,7 @@ class UserMoviesController < ApplicationController
    
     begin
       CSV.foreach(uploaded_file.path, headers: true) do |row|
-        movie_id = row['movie_id']
-        score = row['score']
-  
-        user_movie = current_user.user_movies.find_or_initialize_by(movie_id: movie_id)
-        user_movie.update(score: score)
+        RateMassWorker.perform_async(current_user.id, row['movie_id'], row['score'])
       end
   
       redirect_to movies_path
@@ -41,7 +37,5 @@ class UserMoviesController < ApplicationController
       redirect_to movies_path
     end
   end
-  
-  
   
 end

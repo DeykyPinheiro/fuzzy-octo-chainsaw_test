@@ -37,9 +37,10 @@ class MoviesController < ApplicationController
 
     begin
       CSV.foreach(uploaded_file.path, headers: true) do |row|
-        Movie.create(title: row['title'], director: row['director'])
+        MovieMassWorker.perform_async(row['title'], row['director'])
       end
       flash[:success] = "Filmes importados com sucesso."
+      MovieMassWorker.perform_async
     rescue => e
       flash[:error] = "Ocorreu um erro ao importar os filmes: #{e.message}"
     end
